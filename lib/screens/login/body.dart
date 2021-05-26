@@ -17,6 +17,7 @@
 //        b. Cancel the login - i.e. when the 'Cancel' button is tapped on.
 //-----------------------------------------------------------------------------------------------------------------------------
 
+import 'package:exercise3/screens/edit/edit_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/user_service.dart';
@@ -71,12 +72,19 @@ class Body extends StatelessWidget {
       children: [
         ElevatedButton(
           child: Text('Log in'),
-          onPressed: () {},
+          onPressed: () {
+            if (_buildTextField(hint: 'Username') != null) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EditScreen()));
+            }
+          },
         ),
         SizedBox(width: 10.0),
         ElevatedButton(
           child: Text('Cancel'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ],
     );

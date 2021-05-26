@@ -70,7 +70,9 @@ class Body extends StatelessWidget {
         SizedBox(width: 10.0),
         ElevatedButton(
           child: Text('Cancel'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ],
     );
