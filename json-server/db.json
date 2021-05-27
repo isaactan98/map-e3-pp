@@ -50,6 +50,13 @@
       "title": "Online meeting with friends",
       "description": "To discuss about the plan for setting up an online shopping store",
       "done": false
+    },
+    {
+      "user": 2,
+      "title": "A new todo",
+      "description": "This is a new todo",
+      "done": false,
+      "id": 6
     }
   ]
 }
