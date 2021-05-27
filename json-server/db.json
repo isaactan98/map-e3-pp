@@ -57,6 +57,13 @@
       "description": "This is a new todo",
       "done": false,
       "id": 6
+    },
+    {
+      "title": "This is a new title",
+      "description": "This a description",
+      "done": false,
+      "id": 7,
+      "user": 1
     }
   ]
 }

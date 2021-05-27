@@ -59,12 +59,12 @@ class MainScreenState extends State<MainScreen> {
     refreshTodoListFuture();
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _user = User(id: 1);
-  //   _todoListFuture = TodoService.getTodoListByUser(_user.id);
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _user = User(id: 1);
+    //_todoListFuture = TodoService.getTodoListByUser(_user.id);
+  }
 
   List<Todo> _todoList;
   get todoList => _todoList;
@@ -81,7 +81,14 @@ class MainScreenState extends State<MainScreen> {
     }
   }
 
-  void addTodo(Todo todo) async {}
+  void addTodo(Todo todo) async {
+    if (_user != null) {
+      todo.user = _user.id;
+      final Todo _todo = await TodoService.addTodo(todo);
+      setState(() => _todoList.add(_todo));
+    }
+  }
+
   void updateTodo({int index, Todo todo}) async {}
   void removeTodo(int index) async {}
 
@@ -95,7 +102,9 @@ class MainScreenState extends State<MainScreen> {
             state: this,
           ),
           body: _user != null ? Body(state: this) : null,
-          floatingActionButton: Float(),
+          floatingActionButton: Float(
+            state: this,
+          ),
         ),
       ),
     );
