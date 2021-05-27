@@ -24,7 +24,10 @@ class TodoService {
     return Todo.fromJson(json);
   }
 
-  static Future<Todo> updateTodo(Todo todo) async {}
+  static Future<Todo> updateTodo(Todo todo) async {
+    final upjson = await Rest.put('todos', data: todo);
+    return Todo.fromJson(upjson);
+  }
 
   static Future<void> removeTodo(Todo todo) async {}
 }
