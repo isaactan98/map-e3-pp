@@ -16,10 +16,13 @@ class TodoService {
   static Future<List<Todo>> getTodoListByUser(int userId) async {
     final listJson = await Rest.get('todos?user=$userId');
     //convert response to object
-    listJson.map((json) => Todo.fromJson(json)).toList();
+    return listJson.map((json) => Todo.fromJson(json)).toList();
   }
 
-  static Future<Todo> addTodo(Todo todo) async {}
+  static Future<Todo> addTodo(Todo todo) async {
+    final json = await Rest.post('todos', data: todo);
+    return Todo.fromJson(json);
+  }
 
   static Future<Todo> updateTodo(Todo todo) async {}
 
