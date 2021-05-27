@@ -19,6 +19,7 @@
 
 import 'package:exercise3/screens/edit/edit_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import '../../services/user_service.dart';
 import '../../models/user.dart';
@@ -73,7 +74,9 @@ class Body extends StatelessWidget {
         ElevatedButton(
           child: Text('Log in'),
           onPressed: () {
-            if (_buildTextField(hint: 'Username') != null) {
+            if (_buildTextField() == null) {
+              Text('No login is allow');
+            } else {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => EditScreen()));
             }
@@ -88,5 +91,10 @@ class Body extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  static onError(error) {
+    print("the error is $error.detail");
+    return {'status': false, 'message': 'Unsuccessful Request', 'data': error};
   }
 }
