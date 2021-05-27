@@ -40,9 +40,11 @@ class Body extends StatelessWidget {
             hint: 'Username', icon: Icons.people, onChanged: (value) => () {}),
         _buildTextField(
             hint: 'Password',
-            isObsecure: false,
+            isObsecure: !_state.shows, //change state for show passwrod
             icon: Icons.lock,
-            button: IconButton(icon: Icon(Icons.visibility), onPressed: () {}),
+            button: IconButton(
+                icon: Icon(Icons.visibility),
+                onPressed: () => _state.shows = !_state.shows),
             onChanged: (value) => () {}),
         Text(
           'Invalid username or password!',
