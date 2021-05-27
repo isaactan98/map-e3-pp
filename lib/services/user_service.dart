@@ -15,6 +15,7 @@ class UserService {
   static Future<User> getUserByLoginAndPassword(
       {String login, String password}) async {
     final logins = await Rest.get('users?login=$login&password=$password');
+    //not finish
     if (logins.length == 0) {
       return null;
     } else {
