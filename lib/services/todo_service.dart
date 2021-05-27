@@ -14,7 +14,7 @@ import '../models/todo.dart';
 
 class TodoService {
   static Future<List<Todo>> getTodoListByUser(int userId) async {
-    final listJson = await Rest.get('todos?user=$userId');
+    final List listJson = await Rest.get('todos?user=$userId');
     //convert response to object
     return listJson.map((json) => Todo.fromJson(json)).toList();
   }

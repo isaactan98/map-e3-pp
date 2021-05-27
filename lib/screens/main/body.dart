@@ -23,15 +23,33 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Todo>>(
+        future: _state.todoListFuture,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            _state.todoList = snapshot.data;
+            return _buildListView();
+          } else {
+            return Center(
+              child: Text('${snapshot.connectionState}' +
+                  ', ${snapshot.hasError}' +
+                  ', ${snapshot.data}' +
+                  ', ${_state.todoListFuture}'),
+            );
+          }
+        });
+  }
+
+  ListView _buildListView() {
     return ListView.separated(
-      itemCount: 5,
+      itemCount: _state.todoList.length,
       separatorBuilder: (context, index) => Divider(
         color: Colors.blueGrey,
       ),
       itemBuilder: (context, index) => ListTile(
-        title: Text('Todo title',
+        title: Text('${_state.todoList[index].title}',
             style: TextStyle(decoration: TextDecoration.lineThrough)),
-        subtitle: Text('Todo description'),
+        subtitle: Text('...'),
         onTap: () {},
         onLongPress: () {},
       ),

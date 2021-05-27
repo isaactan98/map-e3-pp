@@ -51,11 +51,12 @@ class Todo {
             user: from._user);
 
   Todo.fromJson(Map<String, dynamic> json)
-      : _title = json['title'],
-        _description = json['description'],
-        _done = json['done'],
-        _id = json['id'],
-        _user = json['user'];
+      : this(
+            title: json['title'],
+            description: json['description'],
+            done: json['done'],
+            id: json['id'],
+            user: json['user']);
 
   Map<String, dynamic> toJson() => {
         'title': title,

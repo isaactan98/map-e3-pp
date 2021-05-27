@@ -18,6 +18,7 @@
 //import 'dart:js';
 
 //import 'package:exercise3/main.dart';
+import 'package:exercise3/models/user.dart';
 import 'package:flutter/material.dart';
 
 import 'main_screen.dart';
@@ -42,14 +43,17 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
           Text('User name goes here', style: TextStyle(fontSize: 12.0)),
         ],
       ),
-      actions: [IconButton(icon: Icon(Icons.login), onPressed: () => _onLogin(context))],
+      actions: [
+        IconButton(icon: Icon(Icons.login), onPressed: () => _onLogin(context))
+      ],
     );
   }
 
   void _onLogin(BuildContext context) async {
-    final _user = await Navigator.pushNamed(context, '/login');
-    if (_user == null) {
-      //_state.
-    } else {}
+    var _user = await Navigator.pushNamed(context, '/login');
+    _user = User(id: 1);
+    if (_user != null) {
+      _state.user = _user;
+    }
   }
 }
