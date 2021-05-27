@@ -37,7 +37,9 @@ class Body extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildTextField(
-            hint: 'Username', icon: Icons.people, onChanged: (value) => () {}),
+            hint: 'Username',
+            icon: Icons.people,
+            onChanged: (value) => _state.username = value),
         _buildTextField(
             hint: 'Password',
             isObsecure: !_state.shows, //change state for show passwrod
@@ -45,9 +47,10 @@ class Body extends StatelessWidget {
             button: IconButton(
                 icon: Icon(Icons.visibility),
                 onPressed: () => _state.shows = !_state.shows),
-            onChanged: (value) => () {}),
+            onChanged: (value) => _state.password = value),
         Text(
-          'Invalid username or password!',
+          '${_state.errorM}',
+          //'Invalid username or password!',
           style: TextStyle(color: Colors.red, fontSize: 20.0),
         ),
         SizedBox(height: 10.0),
@@ -75,28 +78,27 @@ class Body extends StatelessWidget {
       children: [
         ElevatedButton(
           child: Text('Log in'),
-          onPressed: () {
-            if (_buildTextField() == null) {
-              Text('No login is allow');
-            } else {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => EditScreen()));
-            }
-          },
+          onPressed: () => _onLoginP(context),
         ),
         SizedBox(width: 10.0),
         ElevatedButton(
           child: Text('Cancel'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => _onCancelP(context),
         ),
       ],
     );
   }
 
-  static onError(error) {
-    print("the error is $error.detail");
-    return {'status': false, 'message': 'Unsuccessful Request', 'data': error};
+  void _onLoginP(context) async {
+    //perform authentication
+    final _user = await UserService.getUserByLoginAndPassword(
+        login: _state.username, password: _state.password);
+    if (_user.login != null) {
+      Navigator.pop(context, _user);
+    } else {
+      _state.errorM = 'Empty Field';
+    }
   }
+
+  void _onCancelP(context) => Navigator.pop(context, null);
 }

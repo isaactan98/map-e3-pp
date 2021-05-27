@@ -42,14 +42,14 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
           Text('User name goes here', style: TextStyle(fontSize: 12.0)),
         ],
       ),
-      actions: [
-        IconButton(
-            icon: Icon(Icons.login),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
-            })
-      ],
+      actions: [IconButton(icon: Icon(Icons.login), onPressed: () => _onLogin(context))],
     );
+  }
+
+  void _onLogin(BuildContext context) async {
+    final _user = await Navigator.pushNamed(context, '/login');
+    if (_user == null) {
+      //_state.
+    } else {}
   }
 }

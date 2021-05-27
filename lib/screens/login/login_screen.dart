@@ -26,14 +26,22 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  String _username = '';
   String _password = '';
   bool _shows = false;
+  String _errorM = "";
+
+  get username => _username;
+  set username(value) => setState(() => _username = value);
 
   get password => _password;
   set password(value) => setState(() => _password = value);
 
   get shows => _shows;
   set shows(value) => setState(() => _shows = value);
+
+  get errorM => _errorM;
+  set errorM(value) => setState(() => _errorM = value);
 
   @override
   Widget build(BuildContext context) {
