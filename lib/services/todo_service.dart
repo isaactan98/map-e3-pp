@@ -29,5 +29,8 @@ class TodoService {
     return Todo.fromJson(upjson);
   }
 
-  static Future<void> removeTodo(Todo todo) async {}
+  static Future<void> removeTodo(Todo todo) async {
+    final deljson = await Rest.delete('todos?list=$todo');
+    return deljson.map((json) => Todo.fromJson(json)).toList();
+  }
 }
