@@ -93,7 +93,7 @@ class Body extends StatelessWidget {
     //perform authentication
     final _user = await UserService.getUserByLoginAndPassword(
         login: _state.username, password: _state.password);
-    if (_user.login != null) {
+    if (_user != null) {
       Navigator.pop(context, _user);
     } else {
       _state.errorM = 'Empty Field';

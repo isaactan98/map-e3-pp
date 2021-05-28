@@ -27,6 +27,8 @@ class Float extends StatelessWidget {
     }
   }
 
+  void _onRefreshPress() => _state.refreshTodoListFuture();
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -42,7 +44,7 @@ class Float extends StatelessWidget {
             tooltip: 'Refresh',
             child: Icon(Icons.refresh),
             heroTag: null,
-            onPressed: () {})
+            onPressed: () => _onRefreshPress())
       ],
     );
   }
