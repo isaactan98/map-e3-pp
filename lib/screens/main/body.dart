@@ -49,7 +49,7 @@ class Body extends StatelessWidget {
       itemBuilder: (context, index) => ListTile(
         title: Text('${_state.todoList[index].title}',
             style: TextStyle(decoration: TextDecoration.lineThrough)),
-        subtitle: Text('...'),
+        subtitle: Text('${_state.todoList[index].description}'),
         onTap: () {},
         onLongPress: () {},
       ),

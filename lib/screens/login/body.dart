@@ -97,7 +97,7 @@ class Body extends StatelessWidget {
 
     if (_user != null) {
       //return User(id: 1);
-      //Navigator.pop(context, _user);
+      Navigator.pop(context, _user);
     } else {
       _state.errorM = 'Empty Field';
     }
