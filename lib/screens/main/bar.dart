@@ -50,8 +50,8 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   void _onLogin(BuildContext context) async {
-    var _user = await Navigator.pushNamed(context, '/login');
-    _user = User(id: 1);
+    final _user = await Navigator.pushNamed(context, '/login');
+    //_user = User(id: 1);
     if (_user != null) {
       _state.user = _user;
     }

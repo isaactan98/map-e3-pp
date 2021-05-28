@@ -18,6 +18,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 
 import 'package:exercise3/screens/edit/edit_screen.dart';
+import 'package:exercise3/services/rest.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -93,8 +94,10 @@ class Body extends StatelessWidget {
     //perform authentication
     final _user = await UserService.getUserByLoginAndPassword(
         login: _state.username, password: _state.password);
+
     if (_user != null) {
-      Navigator.pop(context, _user);
+      //return User(id: 1);
+      //Navigator.pop(context, _user);
     } else {
       _state.errorM = 'Empty Field';
     }
