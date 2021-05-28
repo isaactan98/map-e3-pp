@@ -8,6 +8,8 @@
 //          This method will be used for constructing the logic of the authentication process in the LoginScreen
 //-----------------------------------------------------------------------------------------------------------------------------
 
+import 'dart:developer';
+
 import 'rest.dart';
 import '../models/user.dart';
 
@@ -16,10 +18,13 @@ class UserService {
       {String login, String password}) async {
     final logins = await Rest.get('users?login=$login&password=$password');
     //not finish
+    var show = logins.map((json) => User.fromJson(json)).toList();
+    print(show[0].id);
 
-    if (logins == null) {
+    if (logins != null) {
+      return User(id: show[0].id); //
+    } else {
       return null;
-    } else
-      return User(id: 1);
+    }
   }
 }

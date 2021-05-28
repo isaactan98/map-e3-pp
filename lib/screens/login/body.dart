@@ -96,12 +96,11 @@ class Body extends StatelessWidget {
         login: _state.username, password: _state.password);
 
     if (_user != null) {
-      //return User(id: 1);
       Navigator.pop(context, _user);
     } else {
       _state.errorM = 'Empty Field';
     }
   }
 
-  void _onCancelP(context) => Navigator.pop(context, null);
+  void _onCancelP(context) => Navigator.pushNamed(context, '/');
 }
