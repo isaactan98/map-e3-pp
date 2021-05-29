@@ -49,9 +49,11 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-            icon: Icon(Icons.login),
-            onPressed: () =>
-                _state.user != null ? _onLogout() : _onLogin(context))
+          icon: Icon(Icons.login),
+          onPressed: () =>
+              _state.user != null ? _onLogout() : _onLogin(context),
+          color: _state.user != null ? Colors.red : Colors.black,
+        )
       ],
     );
   }
