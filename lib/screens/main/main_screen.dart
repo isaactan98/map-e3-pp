@@ -102,9 +102,11 @@ class MainScreenState extends State<MainScreen> {
             state: this,
           ),
           body: _user != null ? Body(state: this) : null,
-          floatingActionButton: Float(
-            state: this,
-          ),
+          floatingActionButton: _user != null
+              ? Float(
+                  state: this,
+                )
+              : null,
         ),
       ),
     );

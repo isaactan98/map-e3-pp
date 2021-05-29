@@ -20,9 +20,10 @@ class UserService {
     //not finish
     var show = logins.map((json) => User.fromJson(json)).toList();
     print(show[0].id);
+    print('show N= ${show[0].name}');
 
     if (logins != null) {
-      return User(id: show[0].id); //
+      return User(id: show[0].id, name: show[0].name, login: show[0].login); //
     } else {
       return null;
     }

@@ -13,6 +13,8 @@
 //      Besides, you will also need to pass the 'states' to the component.
 //-----------------------------------------------------------------------------------------------------------------------------
 
+import 'package:exercise3/models/user.dart';
+import 'package:exercise3/services/user_service.dart';
 import 'package:flutter/material.dart';
 
 import 'body.dart';
@@ -30,9 +32,18 @@ class LoginScreenState extends State<LoginScreen> {
   String _password = '';
   bool _shows = false;
   String _errorM = "";
+  Future<User> _checkU;
+
+  get checkU => _checkU;
+  set checkU(value) => setState(() {
+        _checkU = value;
+        checkUser();
+      });
 
   get username => _username;
-  set username(value) => setState(() => _username = value);
+  set username(value) => setState(() {
+        _username = value;
+      });
 
   get password => _password;
   set password(value) => setState(() => _password = value);
@@ -46,7 +57,7 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => Future.value(false),
+      onWillPop: () => Future.value(true),
       child: SafeArea(
         child: Scaffold(
           body: Body(
@@ -58,4 +69,9 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   //method
+  void checkUser() {
+    checkU = UserService.getUserByLoginAndPassword(
+        login: _username, password: _password);
+    setState(() {});
+  }
 }

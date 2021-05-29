@@ -40,7 +40,8 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('My Todo List'),
-          Text('${_state.user}', style: TextStyle(fontSize: 12.0)),
+          if (_state.user != null)
+            Text('${_state.user.name}', style: TextStyle(fontSize: 12.0)),
         ],
       ),
       actions: [
@@ -54,11 +55,11 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
 
   void _onLogin(BuildContext context) async {
     final _user = await Navigator.pushNamed(context, '/login');
-    //_user = User(id: 1);
-    if (_user != null) {
-      _state.user = _user;
-    } else
+
+    if (_user == null) {
       _state.user = null;
+    } else
+      _state.user = _user;
   }
 
   void _onLogout() => _state.user = null;
