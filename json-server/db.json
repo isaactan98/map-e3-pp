@@ -59,11 +59,11 @@
       "id": 6
     },
     {
-      "title": "This is a new title",
+      "title": "New Title",
       "description": "This a description",
       "done": false,
-      "id": 7,
-      "user": 1
+      "id": 9,
+      "user": 2
     }
   ]
 }

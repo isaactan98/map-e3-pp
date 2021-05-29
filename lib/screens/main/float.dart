@@ -20,10 +20,10 @@ class Float extends StatelessWidget {
   void _onPlusPress(BuildContext context) async {
     //final _todo = await Navigator.pushNamed(context, '/new');
     var _todo = await Navigator.pushNamed(context, '/new');
-    _todo =
-        Todo(description: 'This a description', title: 'This is a new title');
+    _todo = Todo(description: 'This a description', title: 'New Title');
     if (_todo != null) {
       _state.addTodo(_todo);
+      //print('todo = $_todo');
     }
   }
 

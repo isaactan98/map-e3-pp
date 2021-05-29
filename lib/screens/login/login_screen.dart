@@ -37,7 +37,6 @@ class LoginScreenState extends State<LoginScreen> {
   get checkU => _checkU;
   set checkU(value) => setState(() {
         _checkU = value;
-        checkUser();
       });
 
   get username => _username;
@@ -66,12 +65,5 @@ class LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  //method
-  void checkUser() {
-    checkU = UserService.getUserByLoginAndPassword(
-        login: _username, password: _password);
-    setState(() {});
   }
 }

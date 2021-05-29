@@ -51,7 +51,7 @@ class Body extends StatelessWidget {
             style: TextStyle(decoration: TextDecoration.lineThrough)),
         subtitle: Text('${_state.todoList[index].description}'),
         onTap: () {},
-        onLongPress: () {},
+        onLongPress: () => _state.removeTodo(index),
       ),
     );
   }

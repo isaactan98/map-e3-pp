@@ -19,10 +19,10 @@ class UserService {
     final logins = await Rest.get('users?login=$login&password=$password');
     //not finish
     var show = logins.map((json) => User.fromJson(json)).toList();
-    print(show[0].id);
-    print('show N= ${show[0].name}');
+    //print(show[0].id);
+    //print('show N= ${show[0].name}');
 
-    if (logins != null) {
+    if (show.length != 0) {
       return User(
           id: show[0].id,
           name: show[0].name,

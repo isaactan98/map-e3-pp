@@ -92,21 +92,20 @@ class Body extends StatelessWidget {
 
   void _onLoginP(context) async {
     //perform authentication
-    final _user = await UserService.getUserByLoginAndPassword(
-        login: _state.username, password: _state.password);
-    var showU = User.copy(_user);
-    print('show u = $showU');
 
-    // final _usJson = await Rest.get(
-    //     'users?login=${_state.username}&password=${_state.password}');
-    // var _uJson = _usJson.map((json) => User.fromJson(json)).toList();
-    // print(_uJson);
-
-    if (_user != null) {
-      Navigator.pop(context,
-          User(id: showU.id, name: showU.name, photoUrl: showU.photoUrl));
-    } else {
+    if (_state.username == '' || _state.password == '') {
       _state.errorM = 'Empty Field';
+    } else {
+      final _user = await UserService.getUserByLoginAndPassword(
+          login: _state.username, password: _state.password);
+
+      if (_user != null) {
+        var showU = User.copy(_user);
+        Navigator.pop(context,
+            User(id: showU.id, name: showU.name, photoUrl: showU.photoUrl));
+      } else {
+        _state.errorM = 'Invalid Username or Password';
+      }
     }
   }
 
