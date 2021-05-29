@@ -34,8 +34,11 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading:
-          CircleAvatar(backgroundImage: AssetImage('assets/unknown_user.png')),
+      leading: _state.user != null
+          ? CircleAvatar(
+              backgroundImage: NetworkImage('${_state.user.photoUrl}'))
+          : CircleAvatar(
+              backgroundImage: AssetImage('assets/unknown_user.png')),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

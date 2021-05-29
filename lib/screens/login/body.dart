@@ -103,7 +103,8 @@ class Body extends StatelessWidget {
     // print(_uJson);
 
     if (_user != null) {
-      Navigator.pop(context, User(id: showU.id, name: showU.name));
+      Navigator.pop(context,
+          User(id: showU.id, name: showU.name, photoUrl: showU.photoUrl));
     } else {
       _state.errorM = 'Empty Field';
     }

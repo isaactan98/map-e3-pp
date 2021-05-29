@@ -23,7 +23,11 @@ class UserService {
     print('show N= ${show[0].name}');
 
     if (logins != null) {
-      return User(id: show[0].id, name: show[0].name, login: show[0].login); //
+      return User(
+          id: show[0].id,
+          name: show[0].name,
+          login: show[0].login,
+          photoUrl: show[0].photoUrl); //
     } else {
       return null;
     }
