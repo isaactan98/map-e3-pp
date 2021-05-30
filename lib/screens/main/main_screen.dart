@@ -34,6 +34,7 @@
 //      Besides, you will also need to pass the 'states' to the components.
 //-----------------------------------------------------------------------------------------------------------------------------
 
+import 'package:exercise3/screens/edit/edit_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/user.dart';
@@ -89,12 +90,27 @@ class MainScreenState extends State<MainScreen> {
     }
   }
 
-  void updateTodo({int index, Todo todo}) async {}
+  void updateTodo({int index, Todo todo}) async {
+    if (_user != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => EditScreen(
+                    isEditing: true,
+                    data: todo,
+                  )));
+      todo.id = index;
+      final Todo _todo = await TodoService.updateTodo(todo);
+      setState(() => _todoList.firstWhere((todo) => _todo.id));
+    }
+  }
+
   void removeTodo(int index) async {
     if (_user != null) {
-      Todo todo = _todoList.elementAt(index);
+      final Todo todo = _todoList.elementAt(index);
       print(todo.id);
-      setState(() => TodoService.removeTodo(todo.id));
+      await TodoService.removeTodo(todo.id);
+      setState(() {});
     }
   }
 

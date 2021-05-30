@@ -16,6 +16,7 @@
 //        b. Cancel the changes - i.e. when the 'Cancel' button is tapped on.
 //-----------------------------------------------------------------------------------------------------------------------------
 
+import 'package:exercise3/models/todo.dart';
 import 'package:flutter/material.dart';
 
 import 'edit_screen.dart';
@@ -31,12 +32,12 @@ class Body extends StatelessWidget {
       children: [
         _buildTextLisTile(
             label: 'Title',
-            value: 'Todo title goes here',
-            onChanged: (value) {}),
+            value: _state.title,
+            onChanged: (value) => _state.title = value),
         _buildTextLisTile(
             label: 'Description',
-            value: 'Todo description goes here',
-            onChanged: (value) {}),
+            value: _state.description,
+            onChanged: (value) => _state.description = value),
         CheckboxListTile(
           value: false,
           onChanged: (value) {},
@@ -65,7 +66,7 @@ class Body extends StatelessWidget {
       children: [
         ElevatedButton(
           child: Text('Ok'),
-          onPressed: () {},
+          onPressed: () => _okPress(context),
         ),
         SizedBox(width: 10.0),
         ElevatedButton(
@@ -76,5 +77,14 @@ class Body extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _okPress(BuildContext context) async {
+    if (_state.title != null && _state.description != null) {
+      return Navigator.pop(
+          context, Todo(title: _state.title, description: _state.description));
+    } else {
+      return Navigator.pop(context);
+    }
   }
 }

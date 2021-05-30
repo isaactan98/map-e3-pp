@@ -7,7 +7,6 @@
 //        b. Refresh the screen - i.e. when the user taps on the 'Refresh' button
 //-----------------------------------------------------------------------------------------------------------------------------
 
-import 'package:exercise3/models/todo.dart';
 import 'package:flutter/material.dart';
 
 import 'main_screen.dart';
@@ -19,10 +18,14 @@ class Float extends StatelessWidget {
 
   void _onPlusPress(BuildContext context) async {
     //final _todo = await Navigator.pushNamed(context, '/new');
-    var _todo = await Navigator.pushNamed(context, '/new');
-    _todo = Todo(description: 'This a description', title: 'New Title');
-    if (_todo != null) {
-      _state.addTodo(_todo);
+    if (_state.user != null) {
+      var _todo = await Navigator.pushNamed(context, '/new');
+      print(_state.user.id);
+      //_todo = Todo(description: 'This a description', title: 'New Title');
+      if (_todo != null) {
+        _state.addTodo(_todo);
+      }
+
       //print('todo = $_todo');
     }
   }

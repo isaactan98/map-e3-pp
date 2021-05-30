@@ -7,6 +7,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 
 import 'package:exercise3/screens/edit/bar.dart';
+import 'package:exercise3/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/todo.dart';
@@ -31,6 +32,19 @@ class EditScreen extends StatefulWidget {
 }
 
 class EditScreenState extends State<EditScreen> {
+  String _title = '';
+  String _description = '';
+  bool _done;
+
+  get title => _title;
+  set title(value) => _title = value;
+
+  get description => _description;
+  set description(value) => _description = value;
+
+  get done => _done;
+  set done(value) => _done = value;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
