@@ -72,7 +72,10 @@ class Body extends StatelessWidget {
         child: CheckboxListTile(
           value: _state.data.done,
           onChanged: (value) {
-            value == false ? _state.data.done = value : true;
+            _state.data.done == false
+                ? _state.data.done = true
+                : _state.data.done = false;
+            print(_state.data.done);
           },
           title: Text('Done'),
         ),
