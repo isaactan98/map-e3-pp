@@ -25,7 +25,7 @@ class TodoService {
   }
 
   static Future<Todo> updateTodo(Todo todo) async {
-    final upjson = await Rest.put('todos', data: todo);
+    final upjson = await Rest.put('todos/${todo.id}', data: todo);
     return Todo.fromJson(upjson);
   }
 

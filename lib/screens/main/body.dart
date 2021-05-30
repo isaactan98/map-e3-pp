@@ -11,6 +11,7 @@
 //        b. Delete a todo - i.e. when the user long-press a todo
 //-----------------------------------------------------------------------------------------------------------------------------
 
+import 'package:exercise3/screens/edit/edit_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/todo.dart';
@@ -30,12 +31,7 @@ class Body extends StatelessWidget {
             _state.todoList = snapshot.data;
             return _buildListView();
           } else {
-            return Center(
-              child: Text('${snapshot.connectionState}' +
-                  ', ${snapshot.hasError}' +
-                  ', ${snapshot.data}' +
-                  ', ${_state.todoListFuture}'),
-            );
+            return Center(child: CircularProgressIndicator());
           }
         });
   }
@@ -50,7 +46,7 @@ class Body extends StatelessWidget {
         title:
             Text('${_state.todoList[index].title}', style: _textStyle(index)),
         subtitle: Text('${_state.todoList[index].description}'),
-        onTap: () {},
+        onTap: () => _onTap(context, index),
         onLongPress: () => _state.removeTodo(index),
       ),
     );
@@ -61,6 +57,23 @@ class Body extends StatelessWidget {
       return TextStyle(decoration: TextDecoration.lineThrough);
     } else {
       return null;
+    }
+  }
+
+  void _onTap(BuildContext context, int index) async {
+    final _editThis = EditScreen(
+        isEditing: true,
+        data: Todo(
+            id: _state.todoList[index].id,
+            title: _state.todoList[index].title,
+            description: _state.todoList[index].description,
+            user: _state.todoList[index].user,
+            done: _state.todoList[index].done));
+    var _update = await Navigator.push(
+        context, EditScreen.route(isEditing: true, data: _editThis.data));
+    if (_update != null) {
+      print(_update.title);
+      _state.updateTodo(index: _state.todoList[index].id, todo: _update);
     }
   }
 }

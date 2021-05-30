@@ -94,7 +94,8 @@ class MainScreenState extends State<MainScreen> {
     if (_user != null) {
       todo.id = index;
       final Todo _todo = await TodoService.updateTodo(todo);
-      setState(() => _todoList.firstWhere((todo) => _todo.id));
+      print(_todo.id);
+      setState(() {});
     }
   }
 

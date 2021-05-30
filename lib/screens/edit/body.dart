@@ -28,29 +28,52 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        _buildTextLisTile(
-            label: 'Title',
-            value: _state.title,
-            onChanged: (value) => _state.title = value),
-        _buildTextLisTile(
-            label: 'Description',
-            value: _state.description,
-            onChanged: (value) => _state.description = value),
-        _checkBoxList(),
-        _buildButtons(context)
-      ],
-    );
+    return _buildListView(context);
+  }
+
+  ListView _buildListView(BuildContext context) {
+    print('check = ${_state.isEdit}');
+    if (_state.isEdit == true) {
+      return ListView(
+        children: [
+          _buildTextLisTile(
+              label: 'Title',
+              value: _state.data.title,
+              onChanged: (value) => _state.data.title = value),
+          _buildTextLisTile(
+              label: 'Description',
+              value: _state.data.description,
+              onChanged: (value) => _state.data.description = value),
+          _checkBoxList(),
+          _buildButtons(context)
+        ],
+      );
+    } else {
+      return ListView(
+        children: [
+          _buildTextLisTile(
+              label: 'Title',
+              value: _state.title,
+              onChanged: (value) => _state.title = value),
+          _buildTextLisTile(
+              label: 'Description',
+              value: _state.description,
+              onChanged: (value) => _state.description = value),
+          _checkBoxList(),
+          _buildButtons(context)
+        ],
+      );
+    }
   }
 
   Center _checkBoxList() {
-    final _editS = EditScreen();
-    if (_editS.isEditing == true) {
+    if (_state.isEdit == true) {
       return Center(
         child: CheckboxListTile(
-          value: _state.done,
-          onChanged: (value) => _state.done = value,
+          value: _state.data.done,
+          onChanged: (value) {
+            value == false ? _state.data.done = value : true;
+          },
           title: Text('Done'),
         ),
       );
@@ -91,11 +114,25 @@ class Body extends StatelessWidget {
   }
 
   void _okPress(BuildContext context) async {
-    if (_state.title != null && _state.description != null) {
-      return Navigator.pop(
-          context, Todo(title: _state.title, description: _state.description));
+    if (_state.isEdit == false) {
+      if (_state.title != null && _state.description != null) {
+        return Navigator.pop(context,
+            Todo(title: _state.title, description: _state.description));
+      } else {
+        return Navigator.pop(context);
+      }
     } else {
-      return Navigator.pop(context);
+      if (_state.title != null && _state.description != null) {
+        return Navigator.pop(
+            context,
+            Todo(
+                title: _state.data.title,
+                description: _state.data.description,
+                done: _state.data.done,
+                user: _state.data.user));
+      } else {
+        return Navigator.pop(context);
+      }
     }
   }
 }
