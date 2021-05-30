@@ -47,12 +47,20 @@ class Body extends StatelessWidget {
         color: Colors.blueGrey,
       ),
       itemBuilder: (context, index) => ListTile(
-        title: Text('${_state.todoList[index].title}',
-            style: TextStyle(decoration: TextDecoration.lineThrough)),
+        title:
+            Text('${_state.todoList[index].title}', style: _textStyle(index)),
         subtitle: Text('${_state.todoList[index].description}'),
         onTap: () {},
         onLongPress: () => _state.removeTodo(index),
       ),
     );
+  }
+
+  TextStyle _textStyle(int index) {
+    if (_state.todoList[index].done == true) {
+      return TextStyle(decoration: TextDecoration.lineThrough);
+    } else {
+      return null;
+    }
   }
 }

@@ -92,13 +92,6 @@ class MainScreenState extends State<MainScreen> {
 
   void updateTodo({int index, Todo todo}) async {
     if (_user != null) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => EditScreen(
-                    isEditing: true,
-                    data: todo,
-                  )));
       todo.id = index;
       final Todo _todo = await TodoService.updateTodo(todo);
       setState(() => _todoList.firstWhere((todo) => _todo.id));
