@@ -38,14 +38,25 @@ class Body extends StatelessWidget {
             label: 'Description',
             value: _state.description,
             onChanged: (value) => _state.description = value),
-        CheckboxListTile(
-          value: false,
-          onChanged: (value) {},
-          title: Text('Done'),
-        ),
+        _checkBoxList(),
         _buildButtons(context)
       ],
     );
+  }
+
+  Center _checkBoxList() {
+    final _editS = EditScreen();
+    if (_editS.isEditing == true) {
+      return Center(
+        child: CheckboxListTile(
+          value: _state.done,
+          onChanged: (value) => _state.done = value,
+          title: Text('Done'),
+        ),
+      );
+    } else {
+      return Center();
+    }
   }
 
   ListTile _buildTextLisTile({label, value, onChanged}) {
